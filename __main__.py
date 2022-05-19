@@ -47,3 +47,5 @@ def withdraw(balanceList, index):
         balanceList[index] = str(new_balance)
         print("Your transaction was successful. ")
 
+def show_balance(userNameList, balanceList, index):
+    print(userNameList[index], "'s current balance is: ", int(balanceList[index]))
