@@ -23,10 +23,10 @@ def changeUser(userNameList, passwordList, balanceList):
             if passWord == passwordList[index]:
                 return index
             else:
-                print("Error! Please enter valid username and/or password")
+                print("Error! Please enter a valid username and/or password")
 
         else:
-            print("Error! Please enter valid username and/or password")
+            print("Error! Please enter a valid username and/or password")
             
 
 def deposit(balanceList, index):
@@ -35,3 +35,15 @@ def deposit(balanceList, index):
     new_balance = amount + balance 
     balanceList[index] = str(new_balance)
     print("You've made a successful deposit! ")
+
+def withdraw(balanceList, index):
+    amount = int(input("Please enter the amount you want to withdraw: "))
+    balance = int(balanceList[index])
+
+    if amount > balance:
+        print("We're sorry, you do not have the funds to withdraw. Please try again.")
+    else:
+        new_balance = balance - amount
+        balanceList[index] = str(new_balance)
+        print("Your transaction was successful. ")
+
