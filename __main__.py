@@ -29,3 +29,9 @@ def changeUser(userNameList, passwordList, balanceList):
             print("Error! Please enter valid username and/or password")
             
 
+def deposit(balanceList, index):
+    amount = int(input("Please enter your deposit amount: "))
+    balance = int(balanceList[index])
+    new_balance = amount + balance 
+    balanceList[index] = str(new_balance)
+    print("You've made a successful deposit! ")
