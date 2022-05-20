@@ -1,3 +1,6 @@
+from pickletools import string1
+
+
 def file_read(scores):
     fileRead = open(scores.txt, 'r')
     # fileWrite = open(scoresResults.txt, 'w')
@@ -49,3 +52,14 @@ def withdraw(balanceList, index):
 
 def show_balance(userNameList, balanceList, index):
     print(userNameList[index], "'s current balance is: ", int(balanceList[index]))
+
+def update_file(scoresResult, userNameList, passwordList, balanceList):
+    fileWrite = open(scoresResult, 'w')
+    string1 = userNameList[0] + " " + passwordList[0] + " " + balanceList[0] + "/n"
+    fileWrite.writelines(string1)
+    string1 = userNameList[1] + " " + passwordList[1] + " " + balanceList[1] + "/n"
+    fileWrite.writelines(string1)
+    string1 = userNameList[2] + " " + passwordList[2] + " " + balanceList[2] + "/n"
+    fileWrite.writelines(string1)
+    fileWrite.close()
+    
