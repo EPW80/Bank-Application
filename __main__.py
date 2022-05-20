@@ -1,9 +1,5 @@
-from pickletools import string1
-
-
-def file_read(scores):
-    fileRead = open(scores.txt, 'r')
-    # fileWrite = open(scoresResults.txt, 'w')
+def file_read(UserInformation):
+    fileRead = open(UserInformation.txt, 'r')
     lines = fileRead.readline()
     userNameList = []
     passwordList = []
@@ -15,6 +11,31 @@ def file_read(scores):
         balanceList.append(list[2])
 
     return userNameList, passwordList, balanceList
+
+
+def deposit(balanceList, index):
+    amount = int(input("Please enter your deposit amount: "))
+    balance = int(balanceList[index])
+    new_balance = amount + balance
+    balanceList[index] = str(new_balance)
+    print("You've made a successful deposit! ")
+
+
+def withdraw(balanceList, index):
+    amount = int(input("Please enter the amount you want to withdraw: "))
+    balance = int(balanceList[index])
+
+    if amount > balance:
+        print("We're sorry, you do not have the funds to withdraw. Please try again.")
+    else:
+        new_balance = balance - amount
+        balanceList[index] = str(new_balance)
+        print("Your transaction was successful. ")
+
+
+def display_balance(userNameList, balanceList, index):
+    print(userNameList[index], "'s current balance is: ",
+          int(balanceList[index]))
 
 
 def changeUser(userNameList, passwordList, balanceList):
@@ -30,36 +51,52 @@ def changeUser(userNameList, passwordList, balanceList):
 
         else:
             print("Error! Please enter a valid username and/or password")
-            
 
-def deposit(balanceList, index):
-    amount = int(input("Please enter your deposit amount: "))
-    balance = int(balanceList[index])
-    new_balance = amount + balance 
-    balanceList[index] = str(new_balance)
-    print("You've made a successful deposit! ")
 
-def withdraw(balanceList, index):
-    amount = int(input("Please enter the amount you want to withdraw: "))
-    balance = int(balanceList[index])
-
-    if amount > balance:
-        print("We're sorry, you do not have the funds to withdraw. Please try again.")
-    else:
-        new_balance = balance - amount
-        balanceList[index] = str(new_balance)
-        print("Your transaction was successful. ")
-
-def show_balance(userNameList, balanceList, index):
-    print(userNameList[index], "'s current balance is: ", int(balanceList[index]))
-
-def update_file(scoresResult, userNameList, passwordList, balanceList):
-    fileWrite = open(scoresResult, 'w')
-    string1 = userNameList[0] + " " + passwordList[0] + " " + balanceList[0] + "/n"
+def add_user(UserInformation, userNameList, passwordList, balanceList):
+    fileWrite = open(UserInformation.txt, 'w')
+    string1 = userNameList[0] + " " + \
+        passwordList[0] + " " + balanceList[0] + "/n"
     fileWrite.writelines(string1)
-    string1 = userNameList[1] + " " + passwordList[1] + " " + balanceList[1] + "/n"
+    string1 = userNameList[1] + " " + \
+        passwordList[1] + " " + balanceList[1] + "/n"
     fileWrite.writelines(string1)
-    string1 = userNameList[2] + " " + passwordList[2] + " " + balanceList[2] + "/n"
+    string1 = userNameList[2] + " " + \
+        passwordList[2] + " " + balanceList[2] + "/n"
     fileWrite.writelines(string1)
     fileWrite.close()
-    
+
+
+if __name__ == "__main__":
+    userNameList, passwordList, balanceList = file_read("UserInformation.txt")
+
+    index = changeUser(userNameList, passwordList, balanceList)
+    while True:
+        print("D: Deposit money ")
+        print("W: Withdraw money ")
+        print("B: Current balance ")
+        print("C: Change user, display user name ")
+        print("A: Add new client information")
+        print("E: Exit program")
+
+        userInput = input("Please enter your choice: ")
+        if(userInput[0] == 'D'):
+            deposit(balanceList, index)
+            add_user("UserInformation.txt", userNameList,
+                        passwordList, balanceList)
+        elif(userInput[0] == 'W'):
+
+            withdraw(balanceList, index)
+            add_user("UserInformation.txt",  userNameList,
+                        passwordList, balanceList)
+        elif(userInput[0] == 'B'):
+            display_balance(userNameList, balanceList, index)
+
+        elif(userInput[0] == 'C'):
+
+            index = changeUser(userNameList, passwordList, balanceList)
+        elif(userInput[0] == 'E'):
+            print("Bye! ")
+            break
+        else:
+            print("Error! Please enter a valid choice ")
