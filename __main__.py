@@ -72,31 +72,37 @@ if __name__ == "__main__":
 
     index = changeUser(userNameList, passwordList, balanceList)
     while True:
-        print("D: Deposit money ")
-        print("W: Withdraw money ")
-        print("B: Current balance ")
-        print("C: Change user, display user name ")
-        print("A: Add new client information")
+        print("D: Deposit money: ")
+        print("W: Withdraw money: ")
+        print("B: Current balance: ")
+        print("C: Change user, display user name: ")
+        print("A: Add new client information:")
         print("E: Exit program")
 
         userInput = input("Please enter your choice: ")
         if(userInput[0] == 'D'):
             deposit(balanceList, index)
             add_user("UserInformation.txt", userNameList,
-                        passwordList, balanceList)
+                     passwordList, balanceList)
         elif(userInput[0] == 'W'):
 
             withdraw(balanceList, index)
             add_user("UserInformation.txt",  userNameList,
-                        passwordList, balanceList)
+                     passwordList, balanceList)
         elif(userInput[0] == 'B'):
             display_balance(userNameList, balanceList, index)
 
         elif(userInput[0] == 'C'):
 
             index = changeUser(userNameList, passwordList, balanceList)
+
+        elif(userInput[0] == 'A'):
+
+            index = add_user(userNameList, passwordList, balanceList)
+
         elif(userInput[0] == 'E'):
             print("Bye! ")
             break
+
         else:
             print("Error! Please enter a valid choice ")
