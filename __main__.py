@@ -24,7 +24,6 @@ def deposit(balanceList, index):
 def withdraw(balanceList, index):
     amount = int(input("Please enter the amount you want to withdraw: "))
     balance = int(balanceList[index])
-
     if amount > balance:
         print("We're sorry, you do not have the funds to withdraw. Please try again.")
     else:
@@ -35,7 +34,7 @@ def withdraw(balanceList, index):
 
 def display_balance(userNameList, balanceList, index):
     print(userNameList[index], "'s current balance is: ",
-          int(balanceList[index]))
+    int(balanceList[index]))
 
 
 def changeUser(userNameList, passwordList, balanceList):
@@ -44,11 +43,10 @@ def changeUser(userNameList, passwordList, balanceList):
         passWord = input("Please enter your password: ")
         if userName in userNameList:
             index = userNameList.index(userName)
-            if passWord == passwordList[index]:
-                return index
-            else:
-                print("Error! Please enter a valid username and/or password")
-
+        else:
+            print("Error! Please enter a valid username and/or password")
+        if passWord == passwordList[index]:
+            return index
         else:
             print("Error! Please enter a valid username and/or password")
 
@@ -56,20 +54,19 @@ def changeUser(userNameList, passwordList, balanceList):
 def add_user(UserInformation, userNameList, passwordList, balanceList):
     fileWrite = open(UserInformation.txt, 'w')
     string1 = userNameList[0] + " " + \
-        passwordList[0] + " " + balanceList[0] + "/n"
+    passwordList[0] + " " + balanceList[0] + "/n"
     fileWrite.writelines(string1)
     string1 = userNameList[1] + " " + \
-        passwordList[1] + " " + balanceList[1] + "/n"
+    passwordList[1] + " " + balanceList[1] + "/n"
     fileWrite.writelines(string1)
     string1 = userNameList[2] + " " + \
-        passwordList[2] + " " + balanceList[2] + "/n"
+    passwordList[2] + " " + balanceList[2] + "/n"
     fileWrite.writelines(string1)
     fileWrite.close()
 
 
 if __name__ == "__main__":
     userNameList, passwordList, balanceList = file_read("UserInformation.txt")
-
     index = changeUser(userNameList, passwordList, balanceList)
     while True:
         print("D: Deposit money: ")
@@ -78,31 +75,23 @@ if __name__ == "__main__":
         print("C: Change user, display user name: ")
         print("A: Add new client information:")
         print("E: Exit program")
-
         userInput = input("Please enter your choice: ")
         if(userInput[0] == 'D'):
             deposit(balanceList, index)
             add_user("UserInformation.txt", userNameList,
-                     passwordList, balanceList)
+            passwordList, balanceList)
         elif(userInput[0] == 'W'):
-
             withdraw(balanceList, index)
             add_user("UserInformation.txt",  userNameList,
-                     passwordList, balanceList)
+            passwordList, balanceList)
         elif(userInput[0] == 'B'):
             display_balance(userNameList, balanceList, index)
-
         elif(userInput[0] == 'C'):
-
             index = changeUser(userNameList, passwordList, balanceList)
-
         elif(userInput[0] == 'A'):
-
             index = add_user(userNameList, passwordList, balanceList)
-
         elif(userInput[0] == 'E'):
             print("Bye! ")
             break
-
         else:
             print("Error! Please enter a valid choice ")
