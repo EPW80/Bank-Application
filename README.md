@@ -41,6 +41,7 @@ https://epw80.github.io/Bank-Application/
 ## Mock-up
 
 ![Bank-Application: Erik Williams](/pyDemo.png)
+![Bank-Application: Erik Williams](/pyDemo2.png)
 
 ## Test
 none
