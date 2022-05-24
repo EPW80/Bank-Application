@@ -40,12 +40,10 @@ https://epw80.github.io/Bank-Application/
 
 ## Mock-up
 
-<!-- ![Book-Search: Erik Williams](/assets/images/projectPhoto.jpg)
-![Book-Search: Erik Williams](/assets/images/projectPhoto2.jpg) -->
-
-## Challenges 
+![Bank-Application: Erik Williams](/pyDemo.png)
 
 ## Test
+none
 
 ## Questions
 for more information or if you have a question: email [erikpw009@gmail.com](erikpw009@gmail.com).
